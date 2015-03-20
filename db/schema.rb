@@ -12,6 +12,11 @@ ActiveRecord::Schema.define do
 		t.boolean "admin"
 	end
 
+	create_table "sessions", force: true do |t|
+		t.string   "token"
+		t.integer "user_id"
+	end
+
 	create_table "companies", force: true do |t|
 		t.string   "name"
 		t.string "address"
