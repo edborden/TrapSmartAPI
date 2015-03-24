@@ -1,3 +1,4 @@
 class CompanySerializer < ApplicationSerializer
-	attributes :name
+	attributes :name,:address,:locality,:region,:postcode
+	has_many :traps
 end

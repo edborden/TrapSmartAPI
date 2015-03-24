@@ -28,7 +28,7 @@ class SessionsController < ApplicationController
 
 	def destroy
 		current_user.session.destroy
-		head :ok
+		head :no_content
 	end
 
 end

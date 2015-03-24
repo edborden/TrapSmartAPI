@@ -29,13 +29,16 @@ ActiveRecord::Schema.define do
 
 	create_table "traps", force: true do |t|
 		t.string   "name"
+		t.string "hardware_id"
 		t.datetime "created_at"
+		t.integer "company_id"
 	end	
 
 	create_table "locations", force: true do |t|
 		t.decimal  "lat",        precision: 8, scale: 6, null: false
 		t.decimal  "lng",        precision: 9, scale: 6, null: false
 		t.datetime "updated_at"
+		t.integer "trap_id"
 	end		
 
 end
