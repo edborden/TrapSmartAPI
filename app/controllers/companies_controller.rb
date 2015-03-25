@@ -22,7 +22,7 @@ class CompaniesController < ApplicationController
 	#end
 
 	def company_params
-		params.require(:company).permit :name,:address,:locality,:region,:postcode
+		params.require(:company).permit :name,:address,:locality,:region,:postcode,:premium
 	end
 
 end

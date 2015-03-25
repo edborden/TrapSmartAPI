@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 				user.session.try(:destroy)
 				render json: user.create_session
 			else
-				error = {errors: {email: ["Incorrect password."]}}
+				error = {errors: {password: ["Incorrect password."]}}
 				render json: error, status: 422
 			end
 		else

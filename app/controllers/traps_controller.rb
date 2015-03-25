@@ -1,11 +1,24 @@
 class TrapsController < ApplicationController
 
 	def create
-		company = Company.find params[:trap][:company_id]
-		count = company.traps.count + 1
-		params[:trap][:name] = "Trap " + count.to_s
-		trap = Trap.create trap_params
-		render json: trap
+		trap = Trap.new trap_params
+		if trap.valid?
+			count = trap.company.traps.count + 1
+			trap.name = "Trap " + count.to_s
+			trap.save	
+			render json: trap
+		else
+			render json: trap.errors.messages, status: 422
+		end
+	end
+
+	def update
+		trap = Trap.update params[:id], trap_params
+		if trap.valid?	
+			render json: trap
+		else
+			render json: trap.errors.messages, status: 422
+		end		
 	end
 
 	def trap_params

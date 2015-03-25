@@ -4,5 +4,5 @@ Rails.application.routes.draw do
 	resources :system_status, only: :index
 	resources :companies, only: [:create,:update,:index]
 	resources :users, only: [:create,:update]
-	resources :traps, only: :create
+	resources :traps, only: [:create,:update]
 end

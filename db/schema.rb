@@ -25,6 +25,7 @@ ActiveRecord::Schema.define do
 		t.string "postcode"
 		t.string "country", default: "US"
 		t.datetime "created_at"
+		t.boolean "premium"
 	end
 
 	create_table "traps", force: true do |t|
@@ -38,7 +39,8 @@ ActiveRecord::Schema.define do
 		t.decimal  "lat",        precision: 8, scale: 6, null: false
 		t.decimal  "lng",        precision: 9, scale: 6, null: false
 		t.datetime "updated_at"
-		t.integer "trap_id"
+		t.integer "locationable_id"
+		t.string "locationable_type"
 	end		
 
 end

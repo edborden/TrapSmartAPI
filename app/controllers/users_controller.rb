@@ -2,7 +2,11 @@ class UsersController < ApplicationController
 
 	def create
 		user = User.create user_params
-		render json: user
+		if user.valid?
+			render json: user
+		else
+			render json: user.errors.messages, status: 422
+		end
 	end
 
 	def update
@@ -15,7 +19,7 @@ class UsersController < ApplicationController
 		else
 			user = User.update params[:id], user_params
 		end
-		
+
 		if user
 			render json: user.reload
 		else

@@ -15,10 +15,13 @@ gem 'keen'
 gem 'mandrill_mailer'
 gem 'mailchimp-api', require: 'mailchimp'
 
+# SHOULD GO IN TEST, TMP FOR DEMO
+gem 'fabrication'
+gem "faker"
+
 group :test do
 	gem 'mocha', "~> 1.0.0"
-	gem 'fabrication'
-	gem "faker"
+
 end
 
 group :production do
