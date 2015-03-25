@@ -9,7 +9,7 @@ ActiveRecord::Schema.define do
 		t.string   "name"
 		t.datetime "created_at"
 		t.integer "company_id"
-		t.boolean "admin"
+		t.boolean "admin", default: false
 	end
 
 	create_table "sessions", force: true do |t|
