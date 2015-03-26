@@ -41,6 +41,19 @@ ActiveRecord::Schema.define do
 		t.datetime "updated_at"
 		t.integer "locationable_id"
 		t.string "locationable_type"
-	end		
+	end
+
+	create_table "events", force: true do |t|
+		t.string   "name"
+		t.datetime "created_at"
+		t.integer "trap_id"
+	end
+
+	create_table "notifications", force: true do |t|
+		t.string   "method"
+		t.integer "notifiable_id"
+		t.string "notifiable_type"
+		t.string "target"
+	end
 
 end

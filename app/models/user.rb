@@ -11,7 +11,9 @@ class User < ActiveRecord::Base
 	end
 
 	def set_password
-		self.password = SecureRandom.hex(8)
+		password = SecureRandom.hex(8)
+		self.password = password
+		return password
 	end
 
 end

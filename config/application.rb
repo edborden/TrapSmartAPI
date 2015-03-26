@@ -21,9 +21,9 @@ module TrapSmartApi
             end
         end
         
-        #MandrillMailer.configure do |config|
-        #    config.api_key = "05AGnHwxdAK5OVfFd6Ev_g"
-        #end
+        MandrillMailer.configure do |config|
+            config.api_key = "iJU6wEsSVJ8am5P4vyywcg"
+        end
 
   end
 end

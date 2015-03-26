@@ -1,8 +1,12 @@
 class UsersController < ApplicationController
 
 	def create
-		user = User.create user_params
+		user = User.new user_params
+		password = user.set_password
 		if user.valid?
+			user.save
+			Mailer.new.welcome user,password
+			MailchimpHandler.new.subscribe user			
 			render json: user
 		else
 			render json: user.errors.messages, status: 422
