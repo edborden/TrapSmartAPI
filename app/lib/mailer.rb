@@ -13,4 +13,8 @@ class Mailer < MandrillMailer::TemplateMailer
 		).deliver
 	end
 
+	def trap_closed
+		return
+	end
+
 end

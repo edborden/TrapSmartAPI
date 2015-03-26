@@ -15,6 +15,10 @@ gem 'keen'
 gem 'mandrill_mailer'
 gem 'mailchimp-api', require: 'mailchimp'
 
+## SMS
+gem 'phony-rails' # phone number normalization
+gem 'twilio-ruby'
+
 # SHOULD GO IN TEST, TMP FOR DEMO
 gem 'fabrication'
 gem "faker"
