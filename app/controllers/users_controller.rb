@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 	def update
 		if params[:user][:new_password]
 			if current_user.authenticate params[:user][:password]
-				current_user.password = params[:new_password]
+				current_user.password = params[:user][:new_password]
 				current_user.save
 			else
 				error = {errors: {password: ["Original password is incorrect."]}}
@@ -27,8 +27,10 @@ class UsersController < ApplicationController
 
 		if user
 			render json: user.reload
-		else
+		elsif error
 			render json: error, status: 422
+		else
+			head :no_content
 		end
 	end
 
