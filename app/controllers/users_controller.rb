@@ -14,11 +14,12 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		if params[:user][:password]
+		if params[:user][:new_password]
 			if current_user.authenticate params[:user][:password]
-				user = User.update params[:id], user_params
+				current_user.password = params[:new_password]
+				current_user.save
 			else
-				error = {errors: {password: ["Incorrect password."]}}
+				error = {errors: {password: ["Original password is incorrect."]}}
 			end
 		else
 			user = User.update params[:id], user_params
@@ -32,7 +33,7 @@ class UsersController < ApplicationController
 	end
 
 	def user_params
-		params.require(:user).permit :name,:email,:password,:admin,:company_id
+		params.require(:user).permit :name,:email,:admin,:company_id
 	end
 
 end
