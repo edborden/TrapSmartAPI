@@ -24,4 +24,15 @@ class Mailer < MandrillMailer::TemplateMailer
 		).deliver		
 	end
 
+	def contact_form params
+		mandrill_mail( template: 'contact_form',
+			subject: "Contact Form Submission",
+			to: {email: "info@trapsmart.com"},
+			important: true,
+			inline_css: true,
+			vars: {'NAME' => params[:name],'EMAIL' => params[:email],'PHONE' => params[:phone],'COMPANY' => params[:company],'MESSAGE' => params[:message]},
+			async: true
+		).deliver			
+	end
+
 end

@@ -6,4 +6,5 @@ Rails.application.routes.draw do
 	resources :users, only: [:create,:update]
 	resources :traps, only: [:create,:update]
 	resources :notifications, only: [:create,:destroy]
+	resources :contacts, only: :create
 end
