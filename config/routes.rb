@@ -5,4 +5,5 @@ Rails.application.routes.draw do
 	resources :companies, only: [:create,:update,:index]
 	resources :users, only: [:create,:update]
 	resources :traps, only: [:create,:update]
+	resources :notifications, only: [:create,:destroy]
 end

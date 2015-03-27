@@ -5,8 +5,8 @@ class Event < ActiveRecord::Base
 	after_create :send_notifications
 
 	def send_notifications
-		trap.notifications.each {|notification| notification.send(self)}
-		company.notifications.each {|notification| notification.send(self)}
+		trap.notifications.each {|notification| notification.send_event(self)}
+		company.notifications.each {|notification| notification.send_event(self)}
 	end
 
 end

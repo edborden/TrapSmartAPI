@@ -50,10 +50,11 @@ ActiveRecord::Schema.define do
 	end
 
 	create_table "notifications", force: true do |t|
-		t.string   "method"
+		t.string   "mode"
 		t.integer "notifiable_id"
 		t.string "notifiable_type"
 		t.string "target"
+		t.string "normalized_phone_number"
 	end
 
 end

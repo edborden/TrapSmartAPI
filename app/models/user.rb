@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 	has_secure_password
 	validates :email, uniqueness: true
-	before_create :set_password
 	
 	has_one :session
 	belongs_to :company
