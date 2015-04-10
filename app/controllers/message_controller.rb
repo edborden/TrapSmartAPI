@@ -6,6 +6,18 @@ class MessageController < ActionController::API
 	def create
 		trap = Trap.find hardware_id: params[:data][:device_name]
 		if trap
+
+			## location
+			location = trap.location
+			unless location
+				location = Location.create
+				trap.location = location
+			end
+			location.lat = params[:data][:gps_latitude]
+			location.lng = params[:data][:gps_longitude]
+			location.save
+
+			## event
 			event = Event.new trap_id:trap.id
 			case params[:data][:event_code].to_int
 			when 110
@@ -19,6 +31,7 @@ class MessageController < ActionController::API
 			end
 			event.send_notifications
 			event.set_trap_status
+
 		end
 		head :no_content
 	end
