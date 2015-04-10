@@ -19,12 +19,12 @@ class MessageController < ActionController::API
 
 			## event
 			event = Event.new trap_id:trap.id
-			case params[:data][:event_code].to_int
-			when 110
+			case params[:data][:event_code]
+			when "110"
 				event.name = "Trap closed"
-			when 109
+			when "109"
 				event.name = "Sensor unit battery low"
-			when 89
+			when "89"
 				event.name = "Control unit battery low"
 			else
 				event.name = "Trap OK"
