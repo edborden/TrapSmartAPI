@@ -16,6 +16,6 @@ user = User.new name:"Janet",email:"janet@trapsmart.com",company_id:1,admin:true
 password = user.set_password
 user.save
 Mailer.new.welcome user,password
-25.times do
-	trap = Fabricate(:trap,company_id:1)
-end
+#25.times do
+#	trap = Fabricate(:trap,company_id:1)
+#end

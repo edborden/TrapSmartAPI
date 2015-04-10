@@ -4,7 +4,22 @@ class MessageController < ActionController::API
 	http_basic_authenticate_with name: "1faafdceeba45ad26f97a061b", password: "afbc67f939eea5b3f5753dba7c5fe"
 
 	def create
-		puts params
+		trap = Trap.find hardware_id: params[:data][:device_name]
+		if trap
+			event = Event.new trap_id:trap.id
+			case params[:data][:event_code].to_int
+			when 110
+				event.name = "Trap closed"
+			when 109
+				event.name = "Sensor unit battery low"
+			when 89
+				event.name = "Control unit battery low"
+			else
+				event.name = "Trap OK"
+			end
+			event.send_notifications
+			event.set_trap_status
+		end
 		head :no_content
 	end
 

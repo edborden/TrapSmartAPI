@@ -33,6 +33,8 @@ ActiveRecord::Schema.define do
 		t.string "hardware_id"
 		t.datetime "created_at"
 		t.integer "company_id"
+		t.datetime "status_updated"
+		t.string "status"
 	end	
 
 	create_table "locations", force: true do |t|
