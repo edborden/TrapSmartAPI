@@ -38,8 +38,8 @@ ActiveRecord::Schema.define do
 	end	
 
 	create_table "locations", force: true do |t|
-		t.decimal  "lat",        precision: 8, scale: 6, null: false
-		t.decimal  "lng",        precision: 9, scale: 6, null: false
+		t.decimal  "lat",        precision: 8, scale: 6
+		t.decimal  "lng",        precision: 9, scale: 6
 		t.datetime "updated_at"
 		t.integer "locationable_id"
 		t.string "locationable_type"
