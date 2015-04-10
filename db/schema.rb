@@ -30,7 +30,7 @@ ActiveRecord::Schema.define do
 
 	create_table "traps", force: true do |t|
 		t.string   "name"
-		t.string "hardware_id"
+		t.string "imei"
 		t.datetime "created_at"
 		t.integer "company_id"
 		t.datetime "status_updated"
