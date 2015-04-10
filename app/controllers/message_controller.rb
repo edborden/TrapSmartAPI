@@ -19,7 +19,7 @@ class MessageController < ActionController::API
 
 			## event
 			event = Event.new trap_id:trap.id
-			case params[:data][:event_code].to_int
+			case params[:data][:event_code].to_i
 			when 110
 				event.name = "Trap closed"
 			when 109
