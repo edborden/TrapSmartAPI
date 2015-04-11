@@ -26,8 +26,18 @@ class MessageController < ActionController::API
 				event.name = "Sensor unit battery low"
 			when 89
 				event.name = "Control unit battery low"
-			else
+			when 108
+				event.name = "External power went above 10V"
+			when 30
+				event.name = "Powered on"
+			when 15 or 86
 				event.name = "Trap OK"
+			when 91
+				event.name = "Input 1 high (event 91)"
+			when 90
+				event.name = "Input 2 high (event 90)"
+			else
+				event.name = "Code #{params[:data][:event_code]}: #{params[:data][:event_type]}"
 			end
 			event.send_notifications
 			event.set_trap_status

@@ -4,9 +4,9 @@ class Notification < ActiveRecord::Base
 
 	def send_event event
 		if text_notification?
-			Texter.new(normalized_phone_number).trap_closed(event)
+			Texter.new(normalized_phone_number).event(event)
 		else
-			Mailer.new.trap_closed event,target
+			Mailer.new.event event,target
 		end
 	end
 

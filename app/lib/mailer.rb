@@ -13,13 +13,13 @@ class Mailer < MandrillMailer::TemplateMailer
 		).deliver
 	end
 
-	def trap_closed event,target
-		mandrill_mail( template: 'trap_closed',
-			subject: "#{event.trap.name} closed!",
+	def event event,target
+		mandrill_mail( template: 'event',
+			subject: "#{event.trap.name} reported #{event.name}",
 			to: {email: target},
 			important: true,
 			inline_css: true,
-			vars: {'TRAP_NAME' => event.trap.name,'LAT' => event.location.lat,'LNG' => event.location.lng},
+			vars: {'TRAP_NAME' => event.trap.name,'LAT' => event.location.lat,'LNG' => event.location.lng,'EVENT_NAME'=> event.name},
 			async: true
 		).deliver		
 	end

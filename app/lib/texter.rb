@@ -11,8 +11,8 @@ class Texter
 		@client ||= Twilio::REST::Client.new @sid,@auth
 	end
 	
-	def trap_closed event
-		client.account.messages.create body: "#{event.trap.name} Closed at google.com/maps/?q=#{event.location.lat},#{event.location.lng}",		
+	def event event
+		client.account.messages.create body: "#{event.trap.name} reported #{event.name} at google.com/maps/?q=#{event.location.lat},#{event.location.lng}",		
 			to: @target,
 			from: "+19739754156"			
 	end
