@@ -30,7 +30,7 @@ class MessageController < ActionController::API
 				event.name = "External power went above 10V"
 			when 30
 				event.name = "Powered on"
-			when 15 or 86
+			when 15,86
 				event.name = "Trap OK"
 			when 91
 				event.name = "Input 1 high (event 91)"
