@@ -9,11 +9,6 @@ Bundler.require(*Rails.groups)
 module TrapSmartApi
 	class Application < Rails::Application
 
-		ActiveModel::Serializer.setup do |config|
-			config.embed = :ids
-			#config.embed_in_root = false
-		end
-
 		config.middleware.insert_before 0, "Rack::Cors" do
 			allow do
 				origins '*'

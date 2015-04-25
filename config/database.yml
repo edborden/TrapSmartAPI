@@ -3,7 +3,7 @@ development:
   host: localhost
   username: postgres
   password: bonebreak1
-  database: development
+  database: trapsmart_development
   encoding: UTF8
 
 test:
@@ -11,7 +11,7 @@ test:
   host: localhost
   username: postgres
   password: bonebreak1
-  database: test        # or whatever the name is
+  database: trapsmart_test
   encoding: UTF8
 
 production:
