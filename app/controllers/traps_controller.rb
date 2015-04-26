@@ -1,5 +1,5 @@
 class TrapsController < ApplicationController
-	before_filter :set_trap, only: :update
+	before_filter :set_trap, except: :create
 
 	def create
 		@trap = Trap.new trap_params
@@ -19,6 +19,11 @@ class TrapsController < ApplicationController
 		else
 			render json: {errors: @trap.errors}, status: :unprocessable_entity
 		end		
+	end
+
+	def destroy
+		@trap.destroy
+		head :no_content
 	end
 
 	def set_trap
