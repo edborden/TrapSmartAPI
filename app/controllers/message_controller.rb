@@ -34,7 +34,7 @@ class MessageController < ActionController::API
 				when 30
 					event.name = "Powered on"
 				when 15,86
-					event.name = "Trap OK"
+					event.name = "Network check"
 				else
 					event.name = "Code #{params[:data][:event_code]}: #{params[:data][:event_type]}"
 				end
