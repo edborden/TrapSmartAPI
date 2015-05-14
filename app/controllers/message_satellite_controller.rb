@@ -44,8 +44,8 @@ class MessageSatelliteController < ActionController::API
 				event.name = "Powered on"
 			when 0
 				event.name = "Network check"
-			else
-				event.name = "Code #{event_code}: #{event_type}"
+			#else
+			#	event.name = "Code #{event_code}: #{event_type}"
 			end
 			event.send_notifications
 			event.set_trap_status
