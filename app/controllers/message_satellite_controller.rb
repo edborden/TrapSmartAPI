@@ -37,7 +37,7 @@ class MessageSatelliteController < ActionController::API
 			## event
 			event = Event.new trap_id:trap.id
 			case event_code
-			when 11 or 100 #"input_status_changed" or "undesired_input_state"
+			when 11,100 #"input_status_changed" or "undesired_input_state"
 				if digital_1_alarm
 					event.name = "Trap closed"
 				elsif digital_2_alarm
