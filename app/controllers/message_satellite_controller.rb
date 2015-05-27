@@ -16,6 +16,10 @@ class MessageSatelliteController < ActionController::API
 		else
 			event_code_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "smartone_standard_message_cause"}
 			event_code = event_code_hash["data"].to_i
+			digital_1_alarm_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_1_alarm"}
+			digital_1_alarm = digital_1_alarm_hash["data"] == "true"
+			digital_2_alarm_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_2_alarm"}
+			digital_2_alarm = digital_2_alarm_hash["data"] == "true"			
 		end
 
 		if positional
@@ -33,10 +37,12 @@ class MessageSatelliteController < ActionController::API
 			## event
 			event = Event.new trap_id:trap.id
 			case event_code
-			when 11
-				event.name = "Trap closed"
-			when 1100
-				event.name = "Sensor unit battery low"
+			when 11 or 100 #"input_status_changed" or "undesired_input_state"
+				if digital_1_alarm
+					event.name = "Trap closed"
+				elsif digital_2_alarm
+					event.name = "Sensor unit battery low"
+				end
 			when 9999
 				event.name = "Control unit battery low"
 			when 1
@@ -50,7 +56,6 @@ class MessageSatelliteController < ActionController::API
 			event.set_trap_status
 
 		end
-
 		
 		head :no_content
 	end
