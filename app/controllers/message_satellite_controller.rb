@@ -1,10 +1,11 @@
 class MessageSatelliteController < ActionController::API
 	include ActionController::HttpAuthentication::Basic::ControllerMethods
 
-	#http_basic_authenticate_with name: "39eea5b3f5753dad26f97a061b", password: "afbc67f9ba7c5fe45ad26f97a061b"
+	http_basic_authenticate_with name: "39eea5b3f5753dad26f97a061b", password: "afbc67f9ba7c5fe45ad26f97a061b"
 
 	def create
 		request_hash = Hash.from_xml(request.body.read)["trackermessages"]["trackermessage"]
+		puts request_hash
 		
 		hardware_id = request_hash["asset"]["esn"]
 		type = request_hash["type"]
@@ -34,16 +35,14 @@ class MessageSatelliteController < ActionController::API
 			case event_code
 			when 11
 				event.name = "Trap closed"
-			when 109
+			when 1100
 				event.name = "Sensor unit battery low"
 			when 9999
 				event.name = "Control unit battery low"
-			when 108
-				event.name = "External power went above 10V"
 			when 1
 				event.name = "Powered on"
 			when 0
-				event.name = "Network check"
+				event.name = "Network check" #"Location Message"
 			#else
 			#	event.name = "Code #{event_code}: #{event_type}"
 			end
