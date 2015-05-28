@@ -17,9 +17,13 @@ class MessageSatelliteController < ActionController::API
 			event_code_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "smartone_standard_message_cause"}
 			event_code = event_code_hash["data"].to_i
 			digital_1_alarm_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_1_alarm"}
+			puts digital_1_alarm_hash
 			digital_1_alarm = digital_1_alarm_hash["data"] == "true"
+			puts digital_1_alarm
 			digital_2_alarm_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_2_alarm"}
-			digital_2_alarm = digital_2_alarm_hash["data"] == "true"			
+			puts digital_2_alarm_hash
+			digital_2_alarm = digital_2_alarm_hash["data"] == "true"
+			puts digital_2_alarm		
 		end
 
 		if positional
