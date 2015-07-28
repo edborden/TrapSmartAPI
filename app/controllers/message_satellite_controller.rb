@@ -9,7 +9,7 @@ class MessageSatelliteController < ActionController::API
 		
 		hardware_id = request_hash["asset"]["esn"]
 		type = request_hash["type"]
-		positional = request_hash["positional"]
+		positional = request_hash["positional"].to_bool
 
 		if type == "smartone_replace_battery"
 			event_code = 9999
@@ -18,10 +18,10 @@ class MessageSatelliteController < ActionController::API
 			event_code = event_code_hash["data"].to_i
 			puts event_code
 			digital_1_alarm_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_1_alarm"}
-			digital_1_alarm = digital_1_alarm_hash["data"] == "true"
+			digital_1_alarm = digital_1_alarm_hash["data"].to_bool
 			puts digital_1_alarm
 			digital_2_alarm_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_2_alarm"}
-			digital_2_alarm = digital_2_alarm_hash["data"] == "true"
+			digital_2_alarm = digital_2_alarm_hash["data"].to_bool
 			puts digital_2_alarm		
 		end
 
