@@ -31,7 +31,7 @@ class MessageSatelliteController < ActionController::API
 		end
 
 		trap = Trap.find_by hardware_id: hardware_id
-		if trap		
+		if trap && !trap.too_soon_to_update
 
 			if positional
 				trap.set_location lat,lng	

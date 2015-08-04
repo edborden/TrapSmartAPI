@@ -18,4 +18,9 @@ class Trap < ActiveRecord::Base
 		location.save	
 	end
 
+	def too_soon_to_update
+		min_time = Time.now - 3.minutes
+		status_updated > min_time
+	end
+
 end
