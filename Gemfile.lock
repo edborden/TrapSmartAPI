@@ -68,6 +68,7 @@ GEM
     mocha (1.0.0)
       metaclass (~> 0.0.1)
     multi_json (1.11.0)
+    newrelic_rpm (3.12.0.288)
     pg (0.18.1-x64-mingw32)
     phony (2.12.5)
     phony_rails (0.12.0)
@@ -135,6 +136,7 @@ DEPENDENCIES
   mailchimp-api
   mandrill_mailer
   mocha (~> 1.0.0)
+  newrelic_rpm
   pg
   phony_rails
   rack-cors
