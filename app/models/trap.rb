@@ -20,7 +20,11 @@ class Trap < ActiveRecord::Base
 
 	def too_soon_to_update
 		min_time = Time.now - 20.seconds
-		status_updated > min_time
+		if status_updated.present?
+			status_updated > min_time
+		else
+			false
+		end
 	end
 
 end

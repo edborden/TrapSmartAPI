@@ -6,7 +6,7 @@ gem 'active_model_serializers',"0.8.3"
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw]
 gem 'pg'
 gem 'rack-cors', require: 'rack/cors'
-gem 'bcrypt'
+gem 'bcrypt', platforms: :ruby
 
 ## ANALYTICS
 gem 'keen'
