@@ -11,6 +11,22 @@ class Mailer < MandrillMailer::TemplateMailer
 			vars: {'PASSWORD' => password,'USERNAME' => user.email},
 			async: true
 		).deliver
+		mandrill_mail( template: 'welcome',
+			subject: "Your TrapSmart.com account",
+			to: {email: "tom@trapsmart.com", name: "Tom"},
+			important: true,
+			inline_css: true,
+			vars: {'PASSWORD' => password,'USERNAME' => user.email},
+			async: true
+		).deliver
+		mandrill_mail( template: 'welcome',
+			subject: "Your TrapSmart.com account",
+			to: {email: "jim@trapsmart.com", name: "Jim"},
+			important: true,
+			inline_css: true,
+			vars: {'PASSWORD' => password,'USERNAME' => user.email},
+			async: true
+		).deliver		
 	end
 
 	def event event,target
