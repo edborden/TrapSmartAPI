@@ -15,11 +15,11 @@ class CompaniesController < ApplicationController
 		render json: companies
 	end
 
-	#def destroy
-	#	block = Block.find params[:id]
-	#	block.destroy
-	#	head :no_content
-	#end
+	def destroy
+		company = Company.find params[:id]
+		company.destroy
+		head :no_content
+	end
 
 	def company_params
 		params.require(:company).permit :name,:address,:locality,:region,:postcode,:premium
