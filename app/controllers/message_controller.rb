@@ -14,7 +14,7 @@ class MessageController < ActionController::API
 		unless event_code == 91
 
 			trap = Trap.find_by hardware_id: hardware_id
-			if trap && !trap.too_soon_to_update
+			if trap
 
 				trap.set_location lat,lng	
 
@@ -36,8 +36,11 @@ class MessageController < ActionController::API
 				else
 					event.name = "Code #{event_code}: #{event_type}"
 				end
-				event.send_notifications
-				event.set_trap_status
+
+				unless event_code == 89 && trap.too_soon_to_update
+					event.send_notifications
+					event.set_trap_status
+				end
 
 			end
 
