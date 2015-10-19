@@ -31,7 +31,7 @@ class MessageSatelliteController < ActionController::API
 		end
 
 		trap = Trap.find_by hardware_id: hardware_id
-		if trap && !trap.too_soon_to_update
+		if trap
 
 			if positional
 				trap.set_location lat,lng	
@@ -55,8 +55,11 @@ class MessageSatelliteController < ActionController::API
 			#else
 			#	event.name = "Code #{event_code}: #{event_type}"
 			end
-			event.send_notifications
-			event.set_trap_status
+
+			unless event.name == "Control unit battery low" && trap.too_soon_to_update
+				event.send_notifications
+				event.set_trap_status
+			end
 
 		end
 		
