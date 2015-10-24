@@ -22,7 +22,13 @@ class MessageSatelliteController < ActionController::API
 			puts digital_1_alarm
 			digital_2_alarm_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_2_alarm"}
 			digital_2_alarm = digital_2_alarm_hash["data"].to_bool
-			puts digital_2_alarm		
+			puts digital_2_alarm
+			digital_1_on_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_1_on"}
+			digital_1_on = digital_1_on_hash["data"].to_bool
+			puts digital_1_on
+			digital_2_on_hash = request_hash["payload"]["field"].find {|obj| obj["name"] == "digital_2_on"}
+			digital_2_on = digital_2_on_hash["data"].to_bool
+			puts digital_2_on
 		end
 
 		if positional
@@ -51,7 +57,13 @@ class MessageSatelliteController < ActionController::API
 			when 1
 				event.name = "Powered on"
 			when 0
-				event.name = "Network check" #"Location Message"
+				if digital_1_on
+					event.name = "Trap closed"
+				elsif digital_2_on
+					event.name = "Sensor unit battery low"
+				else
+					event.name = "Network check"
+				end
 			#else
 			#	event.name = "Code #{event_code}: #{event_type}"
 			end
