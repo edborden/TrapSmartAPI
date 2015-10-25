@@ -57,13 +57,7 @@ class MessageSatelliteController < ActionController::API
 			when 1
 				event.name = "Powered on"
 			when 0
-				if digital_1_on
-					event.name = "Trap closed"
-				elsif digital_2_on
-					event.name = "Sensor unit battery low"
-				else
 					event.name = "Network check"
-				end
 			#else
 			#	event.name = "Code #{event_code}: #{event_type}"
 			end
