@@ -51,6 +51,8 @@ class MessageSatelliteController < ActionController::API
 					event.name = "Trap closed"
 				elsif digital_2_alarm
 					event.name = "Sensor unit battery low"
+				else
+					event.name = "Trap closed"
 				end
 			when 9999
 				event.name = "Control unit battery low"
