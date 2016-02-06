@@ -30,14 +30,25 @@ class Mailer < MandrillMailer::TemplateMailer
 	end
 
 	def event event,target
-		mandrill_mail( template: 'event',
-			subject: "#{event.trap.name} reported #{event.name}",
-			to: {email: target},
-			important: true,
-			inline_css: true,
-			vars: {'TRAP_NAME' => event.trap.name,'LAT' => event.location.lat,'LNG' => event.location.lng,'EVENT_NAME'=> event.name},
-			async: true
-		).deliver		
+		if event.trap.company.premium
+			mandrill_mail( template: 'event',
+				subject: "#{event.trap.name} reported #{event.name}",
+				to: {email: target},
+				important: true,
+				inline_css: true,
+				vars: {'TRAP_NAME' => event.trap.name,'LAT' => event.location.lat,'LNG' => event.location.lng,'EVENT_NAME'=> event.name},
+				async: true
+			).deliver
+		else
+			mandrill_mail( template: 'event_without_location',
+				subject: "#{event.trap.name} reported #{event.name}",
+				to: {email: target},
+				important: true,
+				inline_css: true,
+				vars: {'TRAP_NAME' => event.trap.name,'EVENT_NAME'=> event.name},
+				async: true
+			).deliver
+		end			
 	end
 
 	def contact_form params

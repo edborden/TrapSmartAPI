@@ -12,7 +12,12 @@ class Texter
 	end
 	
 	def event event
-		client.account.messages.create body: "#{event.trap.name} reported #{event.name} at http://google.com/maps/?q=#{event.location.lat},#{event.location.lng}",		
+		if event.trap.company.premium
+			locationInfo = " at http://google.com/maps/?q=#{event.location.lat},#{event.location.lng}"
+		else
+			locationInfo = ""
+		end
+		client.account.messages.create body: "#{event.trap.name} reported #{event.name}#{locationInfo}",		
 			to: @target,
 			from: "+19739754156"			
 	end
