@@ -9,19 +9,19 @@ gem 'rack-cors', require: 'rack/cors'
 gem 'bcrypt', platforms: :ruby
 
 ## ANALYTICS
-gem 'keen'
+gem 'keen', '0.8.9'
 
 ## EMAIL
-gem 'mandrill_mailer'
+gem 'mandrill_mailer', '0.5.1'
 gem 'mailchimp-api', require: 'mailchimp'
 
 ## SMS
-gem 'phony_rails' # phone number normalization
-gem 'twilio-ruby'
+gem 'phony_rails', '0.12.0' # phone number normalization
+gem 'twilio-ruby', '3.15.2'
 
 # SHOULD GO IN TEST, TMP FOR DEMO
-gem 'fabrication'
-gem "faker"
+gem 'fabrication', '2.12.2'
+gem "faker", '1.4.3'
 
 group :test do
 	gem 'mocha', "~> 1.0.0"
