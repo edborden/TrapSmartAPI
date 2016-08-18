@@ -5,48 +5,53 @@ class MessageController < ActionController::API
 
 	def create
 
-		event_code = params[:data][:event_code].to_i
-		event_type = params[:data][:event_type]
-		hardware_id = params[:data][:device_name]
-		lat = params[:data][:gps_latitude]
-		lng = params[:data][:gps_longitude]
+		if params[:type] == "test_ping"
+			head :no_content
+		else
 
-		unless event_code == 91
+			event_code = params[:data][:event_code].to_i
+			event_type = params[:data][:event_type]
+			hardware_id = params[:data][:device_name]
+			lat = params[:data][:gps_latitude]
+			lng = params[:data][:gps_longitude]
 
-			trap = Trap.find_by hardware_id: hardware_id
-			if trap
+			unless event_code == 91
 
-				trap.set_location lat,lng	
+				trap = Trap.find_by hardware_id: hardware_id
+				if trap
 
-				## event
-				event = Event.new trap_id:trap.id
-				case event_code
-				when 110
-					event.name = "Trap closed"
-				when 109
-					event.name = "Sensor unit battery low"
-				when 89
-					event.name = "Control unit battery low"
-				when 108
-					event.name = "External power went above 10V"
-				when 30
-					event.name = "Powered on"
-				when 15,86
-					event.name = "Network check"
-				else
-					event.name = "Code #{event_code}: #{event_type}"
-				end
+					trap.set_location lat,lng	
 
-				unless event_code == 89 && trap.too_soon_to_update
-					event.send_notifications
-					event.set_trap_status
+					## event
+					event = Event.new trap_id:trap.id
+					case event_code
+					when 110
+						event.name = "Trap closed"
+					when 109
+						event.name = "Sensor unit battery low"
+					when 89
+						event.name = "Control unit battery low"
+					when 108
+						event.name = "External power went above 10V"
+					when 30
+						event.name = "Powered on"
+					when 15,86
+						event.name = "Network check"
+					else
+						event.name = "Code #{event_code}: #{event_type}"
+					end
+
+					unless event_code == 89 && trap.too_soon_to_update
+						event.send_notifications
+						event.set_trap_status
+					end
+
 				end
 
 			end
-
+			
+			head :no_content
 		end
-		
-		head :no_content
 	end
 
 end
