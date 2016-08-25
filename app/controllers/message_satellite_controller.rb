@@ -11,7 +11,7 @@ class MessageSatelliteController < ActionController::API
 		type = request_hash["type"]
 		positional = request_hash["positional"].to_bool
 
-		if type == "smartone_diagnostic"
+		if type == "smartone_diagnostic" || type == "smartone_c_diagnostic"
 			head :no_content
 		else
 
